@@ -1,29 +1,10 @@
 ---
 title: "Chapter1"
 author: "Safouane Chergui"
-output: github_document
+output: 
+  html_document:
+    keep_md: true
 ---
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-library(asaur)
-library(dplyr)
-
-gastricXelox
-
-# 32 had the event
-n_event <- gastricXelox %>% 
-  select(delta) %>% 
-  sum(.)
-
-# The number of person-weeks: 999
-person_weeks <- gastricXelox %>% 
-  tally(timeWeeks)
-  
-# The event rate per person-week
-# https://sph.unc.edu/files/2015/07/nciph_ERIC4.pdf
-rate <- n_event / person_weeks
-```
 
 The packages loaded below are needed to execute the code in this file.
 
