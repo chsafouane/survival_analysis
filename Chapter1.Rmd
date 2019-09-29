@@ -1,9 +1,7 @@
 ---
 title: "Chapter1"
 author: "Safouane Chergui"
-output: 
-  html_document:
-    keep_md: true
+output: github_document
 ---
 
 The packages loaded below are needed to execute the code in this file.
