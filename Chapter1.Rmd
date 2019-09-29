@@ -1,0 +1,91 @@
+---
+title: "Chapter1"
+author: "Safouane Chergui"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(asaur)
+library(dplyr)
+
+gastricXelox
+
+# 32 had the event
+n_event <- gastricXelox %>% 
+  select(delta) %>% 
+  sum(.)
+
+# The number of person-weeks: 999
+person_weeks <- gastricXelox %>% 
+  tally(timeWeeks)
+  
+# The event rate per person-week
+# https://sph.unc.edu/files/2015/07/nciph_ERIC4.pdf
+rate <- n_event / person_weeks
+```
+
+The packages loaded below are needed to execute the code in this file.
+
+```{r}
+library(asaur)
+library(dplyr)
+```
+
+## 1st exercise
+
+The dataset listing the patient, the survival time as well as the censoring indicator.
+
+```{r cars}
+patient_data <- data.frame(
+  "Patient" = 1:5,
+  "SurvTime" = c(5, 5, 4, 3, 1),
+  "Status" = c(0, 0, 1, 1, 1)
+)
+
+patient_data
+```
+
+
+```{r}
+dead <- sum(patient_data$Status)
+```
+The number of deceased persons during the trial is `r dead`.
+
+Person-years in the trial: is a summary statistic that can be calculated by summing the total survival time of all patients in the trial (https://www.eupati.eu/glossary/patient-years/)
+
+```{r}
+person_years <- sum(patient_data$SurvTime)
+```
+Person-years is equal to `r person_years`.
+
+The death rate per person-year: As the name of the statistic suggests, one has to divide the number of dead persons during the trial by the previously calculated statistic person_years.
+
+```{r}
+death_rate <- dead / person_years
+```
+The death rate is `r death_rate`.
+
+## 2nd exercise
+
+
+```{r}
+n_event <- gastricXelox %>% 
+  select(delta) %>% 
+  sum(.)
+```
+
+The number of persons that had the event is `r n_event`.
+
+The gastricXelox dataset contains only phase 2 clinical trial.
+
+```{r}
+person_weeks <- sum(gastricXelox$timeWeeks)
+```
+The number of person-weeks is `r person_weeks`.
+
+The event rate per person-week is a similar idea to death-rate that we've calculated in the 1st exercise.
+```{r}
+event_rate <- n_event / person_weeks
+```
+The event rate per person-week is `r event_rate`.
